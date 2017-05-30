@@ -136,8 +136,8 @@
               $('#delete').show('400');
               $('#saveChanges').show('400');
               $('#AddButton').hide('400');
-              $('#file').hide('400');
               $('#file2').hide('400');
+              $('#image').hide('400');
               $('#id').val(id);
               console.log(text);
         });
@@ -148,8 +148,8 @@
               $('#delete').hide('400');
               $('#saveChanges').hide('400');
               $('#AddButton').show('400');
-              $('#file').show('400');
               $('#file2').show('400');
+              $('#image').show('400');
         });
 
         $('#AddButton').click(function(event) {
