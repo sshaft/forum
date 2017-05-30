@@ -44,17 +44,20 @@
                     <ul class="list-group">
                       @foreach ($posts as $post)
                           @if ($post->section_id == 0)
-                              <li class="list-group-item Post" data-toggle="modal" data-target="#myModal">
-                                  <a class="ourItem Post">{{$post->body}}</a>
-                                  <span class="badge">
+                              <li class="list-group-item list-group-item-info Post" data-toggle="modal" data-target="#myModal">
+                                  <a class="ourItem">{{$post->body}}</a>
+                                  <input type="hidden" id="itemId" value="{{$post->id}}">
+                              </li>
+                              <li class="list-group-item">
+                                  <a>
                                     @if ($post->name == Auth::user()->name)
                                         You
                                     @else
                                         {{$post->name}}
                                     @endif
-                                  </span>
-                                  <input type="hidden" id="itemId" value="{{$post->id}}">
+                                  </a>
                               </li>
+                              <br>
                           @endif
                       @endforeach
                     </ul>
