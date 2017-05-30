@@ -25,9 +25,12 @@ class PageController extends Controller
     {
       $posts = DB::table('posts')
                         ->join('users', 'posts.user_id', '=', 'users.id')
-                        ->select('posts.*', 'users.id', 'users.name')
+                        ->select('posts.*', 'users.name')
                         ->get();
-      $sections = DB::table('sections')->get();
+      $sections = DB::table('sections')
+                        ->where('ID_owner', '=', Auth::user()->id)
+                        ->select('sections.*')
+                        ->get();
       return view('home', compact('posts', 'sections'));
     }
 

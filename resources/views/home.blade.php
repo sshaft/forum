@@ -10,7 +10,6 @@
     Profile
 </a>
 @endsection
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -45,15 +44,15 @@
                     <ul class="list-group">
                       @foreach ($posts as $post)
                           @if ($post->section_id == 0)
-
-                              <li class="list-group-item ourItem" data-toggle="modal" data-target="#myModal">
-                                  {{$post->body}}
-                                  <p class="align-left">-
+                              <li class="list-group-item Post" data-toggle="modal" data-target="#myModal">
+                                  <a class="ourItem Post">{{$post->body}}</a>
+                                  <span class="badge">
                                     @if ($post->name == Auth::user()->name)
                                         You
                                     @else
                                         {{$post->name}}
-                                    @endif</p>
+                                    @endif
+                                  </span>
                                   <input type="hidden" id="itemId" value="{{$post->id}}">
                               </li>
                           @endif
@@ -128,7 +127,7 @@
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script>
     $(document).ready(function() {
-        $(document).on('click', '.ourItem', function(event) {
+        $(document).on('click', '.Post', function(event) {
               var text = $.trim($(this).text());
               var id = $(this).find('#itemId').val();
               $('#title').text('Edit Item');

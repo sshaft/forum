@@ -19,6 +19,7 @@ class SectionController extends Controller
         $userId = Auth::id();
         $section = new Section;
         $section->name = $request->name;
+        $section->ID_owner = $userId;
         $section->save();
         return 'Done';
     }
