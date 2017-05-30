@@ -55,6 +55,7 @@
                                     @else
                                         {{$post->name}}
                                     @endif
+                                    {{$post->updated_at}}
                                   </a>
                               </li>
                               <br>
