@@ -9,24 +9,24 @@ use App\Section_role;
 
 class SectionController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-  public function create(request $request)
+    public function create(request $request)
     {
         $userId = Auth::id();
-        $post = new Post;
-        $post->body = $request->text;
+        $section = new Section;
+        $section->name = $request->name;
         if (!isset($request->section))
         {
-            $post->section_id = 0;
+            $section->section_id = 0;
         } else {
-            $post->section_id = $request->section;
+            $section->section_id = $request->section;
         }
-        $post->user_id = $userId;
-        $post->save();
+        $section->user_id = $userId;
+        $section->save();
         return 'Done';
     }
 
@@ -62,8 +62,4 @@ class SectionController extends Controller
         return $searchResult;
     }
 
-    public function upload(request $request)
-    {
-        return view('home');
-    }
 }
