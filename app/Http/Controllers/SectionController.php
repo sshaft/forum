@@ -19,13 +19,6 @@ class SectionController extends Controller
         $userId = Auth::id();
         $section = new Section;
         $section->name = $request->name;
-        if (!isset($request->section))
-        {
-            $section->section_id = 0;
-        } else {
-            $section->section_id = $request->section;
-        }
-        $section->user_id = $userId;
         $section->save();
         return 'Done';
     }
