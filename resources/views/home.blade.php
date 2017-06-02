@@ -55,8 +55,10 @@
                                     @else
                                         {{$post->name}}
                                     @endif
-                                    {{$post->updated_at}}
                                   </a>
+                                  <span class="pull-right">
+                                    {{$post->created_at}}
+                                  </span>
                               </li>
                               <br>
                           @endif
