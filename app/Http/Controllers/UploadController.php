@@ -19,9 +19,20 @@ class UploadController extends Controller
             $request->file('image');
             //return $request->image->path();
             //return $request->image->extension();
-            return Storage::putFile('public', $request->file('image'));
+            return $request->image->storeAs('public', 'filename.jpeg');
+            //return Storage::putFile('public', $request->file('image'));
         }else{
             return 'No file Selected';
         }
+    }
+    public function show()
+    {
+        //return Storage::files('public');
+        //return Storage::makeDirectory('public/make');
+        /*if(Storage::deleteDirectory('public/make')){
+            return 'Deleted';
+        }*/
+        $url = Storage::url('filename.jpeg');
+        return "<img src='" . $url . "' />";
     }
 }
