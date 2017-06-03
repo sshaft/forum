@@ -17,7 +17,13 @@
           <div class="panel-body" id="Section">
               <ul class="list-group">
                   <!--List of options-->
-
+                  <a>Upload Image</a>
+                  <form enctype="multipart/form-data" action="profile/upload" method="post">
+                      {{csrf_field()}}
+                      <input type="file" name="image">
+                      <br>
+                      <input type="submit" value="Upload">
+                  </form>
               </ul>
           </div>
         </div>
