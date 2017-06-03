@@ -46,4 +46,3 @@ Route::post('upload', 'PostController@upload');
 Route::post('section/create', 'SectionController@create');
 
 Route::post('profile/upload', 'UploadController@upload');
-Route::get('show', 'UploadController@show');

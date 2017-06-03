@@ -41,6 +41,10 @@ class PageController extends Controller
                         ->where('user_id', '=', Auth::user()->id)
                         ->select('posts.*')
                         ->get();
+        $files = Storage::files('public');
+        foreach ($files as $file) {
+            if ($file->name==)
+        }
         $userId = Auth::id();
         $img = $userId . '.jpeg';
         if (Storage::url($img)) {
