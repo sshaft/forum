@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class UploadController extends Controller
 {
@@ -19,7 +20,10 @@ class UploadController extends Controller
             $request->file('image');
             //return $request->image->path();
             //return $request->image->extension();
-            return $request->image->storeAs('public', 'filename.jpeg');
+            $userId = Auth::id();
+            $id = $userId . ".jpeg";
+            $request->image->storeAs('public', $id);
+            return $request->all();
             //return Storage::putFile('public', $request->file('image'));
         }else{
             return 'No file Selected';
@@ -28,6 +32,9 @@ class UploadController extends Controller
     public function show()
     {
         //return Storage::files('public');
+        /*if(Storage::delete('public/image.jpeg')){
+            return 'Deleted';
+        }*/
         //return Storage::makeDirectory('public/make');
         /*if(Storage::deleteDirectory('public/make')){
             return 'Deleted';
@@ -38,5 +45,6 @@ class UploadController extends Controller
         //Storage::lastModiefied('public/filename.jpeg');
         //Storage::copy('public/filename.jpeg', 'filename.jpeg');
         //Storage::move('public/filename.jpeg', 'filename.jpeg');
+
     }
 }

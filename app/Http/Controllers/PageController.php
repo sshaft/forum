@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;;
 use App\Post;
@@ -36,10 +37,15 @@ class PageController extends Controller
 
     public function profile()
     {
-      $posts = DB::table('posts')
+        $posts = DB::table('posts')
                         ->where('user_id', '=', Auth::user()->id)
                         ->select('posts.*')
                         ->get();
-        return view('profile', compact('posts'));
+        $userId = Auth::id();
+        $img = $userId . '.jpeg';
+        if (Storage::url($img)) {
+            $url = Storage::url($img);
+        }
+        return view('profile', compact('posts', 'url'));
     }
 }
