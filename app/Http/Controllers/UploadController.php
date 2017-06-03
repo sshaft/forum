@@ -32,7 +32,11 @@ class UploadController extends Controller
         /*if(Storage::deleteDirectory('public/make')){
             return 'Deleted';
         }*/
-        $url = Storage::url('filename.jpeg');
-        return "<img src='" . $url . "' />";
+        //$url = Storage::url('filename.jpeg');
+        //return "<img src='" . $url . "' />";
+        //Storage::size('public/filename.jpeg');
+        //Storage::lastModiefied('public/filename.jpeg');
+        //Storage::copy('public/filename.jpeg', 'filename.jpeg');
+        //Storage::move('public/filename.jpeg', 'filename.jpeg');
     }
 }
