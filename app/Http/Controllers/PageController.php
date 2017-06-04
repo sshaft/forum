@@ -37,19 +37,13 @@ class PageController extends Controller
 
     public function profile()
     {
+        $id = Auth::user()->id;
         $posts = DB::table('posts')
-                        ->where('user_id', '=', Auth::user()->id)
+                        ->where('user_id', '=', $id)
                         ->select('posts.*')
                         ->get();
-        $files = Storage::files('public');
-        foreach ($files as $file) {
-            if ($file->name==)
-        }
-        $userId = Auth::id();
-        $img = $userId . '.jpeg';
-        if (Storage::url($img)) {
-            $url = Storage::url($img);
-        }
+        $filename = 'public/' . $id . '.jpeg';
+        $url = Storage::url($filename);
         return view('profile', compact('posts', 'url'));
     }
 }

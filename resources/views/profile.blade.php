@@ -19,9 +19,8 @@
                   <!--List of options-->
                   @if (isset($url))
                       <img class="img-responsive" src='{{$url}}' />
-                      @//remove image or select another
                   @else
-                  <a>Upload Image</a>
+                  <p>Upload Image</p>
                   <form enctype="multipart/form-data" action="profile/upload" method="post">
                       {{csrf_field()}}
                       <input type="file" name="image">
@@ -29,6 +28,12 @@
                       <input type="submit" value="Upload">
                   </form>
                   @endif
+              </ul>
+              <ul class="list-group">
+                  Email: {{Auth::user()->email}}
+              </ul>
+              <ul class="list-group">
+                  Points: 
               </ul>
           </div>
         </div>
