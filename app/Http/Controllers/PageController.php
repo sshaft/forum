@@ -47,4 +47,15 @@ class PageController extends Controller
         $iduser = $id;
         return view('profile', compact('posts', 'url', 'iduser'));
     }
+    public function users($id)
+    {
+        $posts = DB::table('posts')
+                        ->where('user_id', '=', $id)
+                        ->select('posts.*')
+                        ->get();
+        $filename = 'public/' . $id . '.jpeg';
+        $url = Storage::url($filename);
+        $iduser = $id;
+        return view('profile', compact('posts', 'url', 'iduser'));
+    }
 }

@@ -9,12 +9,18 @@
 <a class="navbar-brand" href="{{ url('/profile') }}">
     Profile
 </a>
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 @endsection
 @section('content')
 <div class="container">
     <div class="row">
         <!--Section Left-->
-        <div class="col-lg-offset-0 col-lg-3">
+        <div class="col-lg-offset-0 col-lg-4">
           <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Section<a href="#" id="addNewsection" class="pull-right" data-toggle="modal" data-target="#SectionModal"><i class="fa fa-plus" aria-hidden="true">Create</i></a></h3>
@@ -35,7 +41,7 @@
           </div>
         </div>
         <!--Center Body-->
-        <div class="col-lg-offset-0 col-lg-6">
+        <div class="col-lg-offset-2 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">All Post<a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true">Add</i></a></h3>
@@ -49,7 +55,7 @@
                                   <input type="hidden" id="itemId" value="{{$post->id}}">
                               </li>
                               <li class="list-group-item">
-                                  <a>
+                                  <a href="profile/{{$post->user_id}}">
                                     @if ($post->name == Auth::user()->name)
                                         You
                                     @else
@@ -66,10 +72,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <!--Search-->
-        <div class="col-lg-2">
-            <input type="text" class="form-control" name="searchPost" id="searchPost" placeholder="Search">
         </div>
 
         <!--Modal-->
