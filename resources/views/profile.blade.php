@@ -33,7 +33,7 @@
                   Email: {{Auth::user()->email}}
               </ul>
               <ul class="list-group">
-                  Points: 
+                  Points:
               </ul>
           </div>
         </div>
@@ -42,14 +42,24 @@
         <div class="col-lg-offset-2 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">User Post <a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true">Add</i></a></h3>
+                    <h3 class="panel-title">Post<a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal">
+                      @if (Auth::user()->id == $iduser)
+                      <i class="fa fa-plus" aria-hidden="true">Add</i>
+                      @endif
+                    </a></h3>
                 </div>
                 <div class="panel-body" id="posts">
                     <ul class="list-group">
                         @foreach ($posts as $post)
-                            <li class="list-group-item ourItem" data-toggle="modal" data-target="#myModal">
-                                {{$post->body}}
+                            <li class="list-group-item list-group-item-info Post" data-toggle="modal" data-target="#myModal">
+                                <a class="ourItem">{{$post->body}}</a>
                                 <input type="hidden" id="itemId" value="{{$post->id}}">
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pull-right">
+                                  {{$post->updated_at}}
+                                </span>
+                                <br>
                             </li>
                         @endforeach
                     </ul>

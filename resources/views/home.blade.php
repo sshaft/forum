@@ -57,7 +57,7 @@
                                     @endif
                                   </a>
                                   <span class="pull-right">
-                                    {{$post->created_at}}
+                                    {{$post->updated_at}}
                                   </span>
                               </li>
                               <br>

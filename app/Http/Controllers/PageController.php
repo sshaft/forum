@@ -44,6 +44,7 @@ class PageController extends Controller
                         ->get();
         $filename = 'public/' . $id . '.jpeg';
         $url = Storage::url($filename);
-        return view('profile', compact('posts', 'url'));
+        $iduser = $id;
+        return view('profile', compact('posts', 'url', 'iduser'));
     }
 }
