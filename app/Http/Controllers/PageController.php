@@ -42,7 +42,7 @@ class PageController extends Controller
                         ->where('user_id', '=', $id)
                         ->select('posts.*')
                         ->get();
-        $filename = 'public/' . $id . '.jpeg';
+        $filename = 'public/users/' . $id . '.jpeg';
         $url = Storage::url($filename);
         $iduser = $id;
         return view('profile', compact('posts', 'url', 'iduser'));

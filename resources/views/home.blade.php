@@ -9,13 +9,8 @@
 <a class="navbar-brand" href="{{ url('/profile') }}">
     Profile
 </a>
-<form class="navbar-form navbar-left" role="search">
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
 @endsection
+
 @section('content')
 <div class="container">
     <div class="row">

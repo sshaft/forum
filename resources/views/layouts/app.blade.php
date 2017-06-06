@@ -56,6 +56,12 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <form class="navbar-form navbar-left" role="search">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Search">
+                                  <button class="">S</button>
+                              </div>
+                            </form>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->email }}<span class="caret"></span>
@@ -73,7 +79,6 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>

@@ -1,0 +1,6 @@
+Pagination on post
+section modal
+add account/profile settings Page
+use search on nav bar for users
+create a page for result of users
+upload a file with ajax and
