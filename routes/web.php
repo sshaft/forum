@@ -48,3 +48,7 @@ Route::post('section/create', 'SectionController@create');
 Route::post('profile/upload', 'UploadController@upload');
 
 Route::get('profile/{email}', 'PageController@users');
+
+//socialite facebook
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
