@@ -64,7 +64,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Obtain the user information from GitHub.
+     * Obtain the user information from Facebook.
      *
      * @return Response
      */
@@ -72,7 +72,8 @@ class LoginController extends Controller
     {
         $userSocial = Socialite::driver('facebook')->user();
 
-        $findUser = User::where('email',$userSocial->email)->first();
+        return $userSocial->name;
+        /*$findUser = User::where('email',$userSocial->email)->first();
         if ($findUser) {
             Auth::login($findUser);
             return "done with old ";
@@ -84,6 +85,6 @@ class LoginController extends Controller
             $user->save();
             Auth::login($user);
             return "done with new";
-        }
+        }*/
     }
 }
