@@ -27,10 +27,12 @@ class PageController extends Controller
       $posts = DB::table('posts')
                         ->join('users', 'posts.user_id', '=', 'users.id')
                         ->select('posts.*', 'users.name')
+                        ->orderBy('created_at', 'desc')
                         ->get();
       $sections = DB::table('sections')
                         ->where('ID_owner', '=', Auth::user()->id)
                         ->select('sections.*')
+                        ->orderBy('created_at', 'desc')
                         ->get();
       return view('home', compact('posts', 'sections'));
     }
@@ -41,6 +43,7 @@ class PageController extends Controller
         $posts = DB::table('posts')
                         ->where('user_id', '=', $id)
                         ->select('posts.*')
+                        ->orderBy('created_at', 'desc')
                         ->get();
         $filename = 'public/users/' . $id . '.jpeg';
         $url = Storage::url($filename);
@@ -52,6 +55,7 @@ class PageController extends Controller
         $posts = DB::table('posts')
                         ->where('user_id', '=', $id)
                         ->select('posts.*')
+                        ->orderBy('created_at', 'desc')
                         ->get();
         $filename = 'public/' . $id . '.jpeg';
         $url = Storage::url($filename);
