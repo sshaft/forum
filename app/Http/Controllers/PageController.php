@@ -26,6 +26,7 @@ class PageController extends Controller
     {
       $posts = DB::table('posts')
                         ->join('users', 'posts.user_id', '=', 'users.id')
+                        ->where('posts.section_id', '=', 0)
                         ->select('posts.*', 'users.name')
                         ->orderBy('created_at', 'desc')
                         ->get();

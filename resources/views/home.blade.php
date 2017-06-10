@@ -23,13 +23,13 @@
             <div class="panel-body" id="Section">
                 <ul class="list-group">
                     <!--List of section-->
-                    <button id="ourSection" class="list-group-item ourSection" value="-5">
+                    <a id="ourSection" class="list-group-item ourSection active" value="-5">
                         No-Section
-                    </button>
+                    </a>
                     @foreach ($sections as $section)
-                        <button id="ourSection" class="list-group-item ourSection" value="{{$section->id}}" data-toggle="modal" data-target="#SectionModal">
+                        <a id="ourSection" class="list-group-item ourSection" href="/section/{{$section->id}}">
                             {{$section->name}}
-                        </button>
+                        </a>
                     @endforeach
                 </ul>
             </div>
@@ -44,7 +44,6 @@
                 <div class="panel-body" id="posts">
                     <ul class="list-group">
                       @foreach ($posts as $post)
-                          @if ($post->section_id == 0)
                               <li class="list-group-item list-group-item-info Post" data-toggle="modal" data-target="#myModal">
                                   <a class="ourItem">{{$post->body}}</a>
                                   <input type="hidden" id="itemId" value="{{$post->id}}">
@@ -62,7 +61,6 @@
                                   </span>
                               </li>
                               <br>
-                          @endif
                       @endforeach
                     </ul>
                 </div>

@@ -44,6 +44,7 @@ Route::post('upload', 'PostController@upload');
 
 //Section
 Route::post('section/create', 'SectionController@create');
+Route::get('section/{id}' , 'SectionController@index');
 
 Route::post('profile/upload', 'UploadController@upload');
 

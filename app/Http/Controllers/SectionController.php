@@ -56,4 +56,9 @@ class SectionController extends Controller
         return $searchResult;
     }
 
+    public function index($id)
+    {
+        
+    }
+
 }
