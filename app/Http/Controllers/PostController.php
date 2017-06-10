@@ -25,7 +25,7 @@ class PostController extends Controller
         $post->body = $request->text;
         if (!isset($request->section))
         {
-            $post->section_id = 0;
+            $post->section_id = $request->section_id;
         } else {
             $post->section_id = $request->section;
         }

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Section;
 use App\Section_role;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;;
+use App\Post;
+use App\User;
 
 class SectionController extends Controller
 {
@@ -58,7 +62,18 @@ class SectionController extends Controller
 
     public function index($id)
     {
-        
+      $posts = DB::table('posts')
+                        ->join('users', 'posts.user_id', '=', 'users.id')
+                        ->where('posts.section_id', '=', $id)
+                        ->select('posts.*', 'users.name')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+      $sections = DB::table('sections')
+                        ->where('ID_owner', '=', Auth::user()->id)
+                        ->select('sections.*')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+      return view('section', compact('posts', 'sections', 'id'));
     }
 
 }

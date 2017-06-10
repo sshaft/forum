@@ -23,11 +23,16 @@
             <div class="panel-body" id="Section">
                 <ul class="list-group">
                     <!--List of section-->
-                    <a id="ourSection" class="list-group-item ourSection active" value="-5">
+                    <a id="ourSection" class="list-group-item ourSection" value="-5">
                         No-Section
                     </a>
                     @foreach ($sections as $section)
-                        <a id="ourSection" class="list-group-item ourSection" href="/section/{{$section->id}}">
+                        <a id="ourSection" class="list-group-item ourSection
+                        @if ($section->id == $id)
+                        active
+                        @endif
+                        "
+                        href="/section/{{$section->id}}">
                             {{$section->name}}
                         </a>
                     @endforeach
@@ -39,7 +44,7 @@
         <div class="col-lg-offset-2 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">All Post<a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true">Add</i></a></h3>
+                    <h3 class="panel-title">Post<a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true">Add</i></a></h3>
                 </div>
                 <div class="panel-body" id="posts">
                     <ul class="list-group">
@@ -154,7 +159,7 @@
 
         $('#AddButton').click(function(event) {
             var text = $('#addItem').val();
-            var section_id = 0;
+            var section_id = {{$id}};
             if (text == "")
             {
                 alert('Please type anything fot your post');
