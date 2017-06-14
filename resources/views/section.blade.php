@@ -23,7 +23,7 @@
             <div class="panel-body" id="Section">
                 <ul class="list-group">
                     <!--List of section-->
-                    <a id="ourSection" class="list-group-item ourSection" value="-5">
+                    <a id="ourSection" class="list-group-item ourSection" value="-5" href="/home">
                         No-Section
                     </a>
                     @foreach ($sections as $section)

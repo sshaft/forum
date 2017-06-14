@@ -18,7 +18,13 @@
         <div class="col-lg-offset-0 col-lg-4">
           <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Section<a href="#" id="addNewsection" class="pull-right" data-toggle="modal" data-target="#SectionModal"><i class="fa fa-plus" aria-hidden="true">Create</i></a></h3>
+                <h3 class="panel-title">Section
+                  <a href="#" id="addNewsection" class="pull-right" data-toggle="modal" data-target="#SectionModal">
+                    <i class="fa fa-plus" aria-hidden="true">
+                      Create
+                    </i>
+                  </a>
+                </h3>
             </div>
             <div class="panel-body" id="Section">
                 <ul class="list-group">
@@ -30,6 +36,7 @@
                         <a id="ourSection" class="list-group-item ourSection" href="/section/{{$section->id}}">
                             {{$section->name}}
                         </a>
+
                     @endforeach
                 </ul>
             </div>
@@ -50,6 +57,7 @@
                               </li>
                               <li class="list-group-item">
                                   <a href="profile/{{$post->user_id}}">
+                                    <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
                                     @if ($post->name == Auth::user()->name)
                                         You
                                     @else
