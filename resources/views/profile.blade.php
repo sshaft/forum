@@ -21,7 +21,7 @@
                       <img class="img-responsive" src='{{$url}}' />
                   @else
                   <p>Upload Image</p>
-                  <form enctype="multipart/form-data" action="profile/upload" method="post">
+                  <form enctype="multipart/form-data" action="/profile/upload" method="post">
                       {{csrf_field()}}
                       <input type="file" name="image">
                       <br>

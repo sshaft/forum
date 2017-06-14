@@ -13,7 +13,7 @@ class UploadController extends Controller
         $this->middleware('auth');
     }
 
-    public function upload(request $request)
+    public function profile(request $request)
     {
         $request->file('image');
         if ($request->hasFile('image')) {
@@ -22,13 +22,27 @@ class UploadController extends Controller
             //return $request->image->extension();
             $userId = Auth::id();
             $id = $userId . ".jpeg";
-            $request->image->storeAs('public', $id);
+            $request->image->storeAs('public/users', $id);
             return $request->all();
             //return Storage::putFile('public', $request->file('image'));
         }else{
             return 'No file Selected';
         }
     }
+
+    public function posts(request $request)
+    {
+        $request->file('image');
+        if ($request->hasFile('image')) {
+            $request->file('image');
+            $id = $request->post_id . ".jpeg";
+            $request->image->storeAs('public/posts', $id);
+            return $request->all();
+        }else{
+            return 'No file Selected';
+        }
+    }
+
     public function show()
     {
         //return Storage::files('public');
