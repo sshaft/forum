@@ -18,7 +18,13 @@
         <div class="col-lg-offset-0 col-lg-4">
           <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Section<a href="#" id="addNewsection" class="pull-right" data-toggle="modal" data-target="#SectionModal"><i class="fa fa-plus" aria-hidden="true">Create</i></a></h3>
+                <h3 class="panel-title">Section
+                  <a href="#" id="addNewsection" class="pull-right" data-toggle="modal" data-target="#SectionModal">
+                    <i class="fa fa-plus" aria-hidden="true">
+                      Create
+                    </i>
+                  </a>
+                </h3>
             </div>
             <div class="panel-body" id="Section">
                 <ul class="list-group">
@@ -54,6 +60,9 @@
                                   <input type="hidden" id="itemId" value="{{$post->id}}">
                               </li>
                               <li class="list-group-item">
+                                  @if (file_exists('storage/posts/' . $post->id . '.jpeg'))
+                                  <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
+                                  @endif
                                   <a href="profile/{{$post->user_id}}">
                                     @if ($post->name == Auth::user()->name)
                                         You
@@ -165,7 +174,7 @@
                 alert('Please type anything fot your post');
             }else
             {
-                $.post('profile', {'text': text,'section_id': section_id,'_token':$('input[name=_token]').val()}, function(data) {
+                $.post('/profile', {'text': text,'section_id': section_id,'_token':$('input[name=_token]').val()}, function(data) {
                     console.log(data);
                     $('#posts').load(location.href + ' #posts');
                 });
@@ -174,7 +183,7 @@
 
         $('#delete').click(function(event) {
             var id = $("#id").val();
-            $.post('profile/post/delete', {'id': id,'_token':$('input[name=_token]').val()}, function(data) {
+            $.post('/profile/post/delete', {'id': id,'_token':$('input[name=_token]').val()}, function(data) {
                 $('#posts').load(location.href + ' #posts');
                 console.log(data);
             });
@@ -183,7 +192,7 @@
         $('#saveChanges').click(function(event) {
             var id = $("#id").val();
             var value = $.trim($("#addItem").val());
-            $.post('profile/post/update', {'id': id,'value': value,'_token':$('input[name=_token]').val()}, function(data) {
+            $.post('/profile/post/update', {'id': id,'value': value,'_token':$('input[name=_token]').val()}, function(data) {
                 $('#posts').load(location.href + ' #posts');
                 console.log(data);
             });
@@ -211,7 +220,7 @@
               alert('Please type anything fot your Section');
           }else
           {
-              $.post('section/create', {'name': name,'_token':$('input[name=_token]').val()}, function(data) {
+              $.post('/section/create', {'name': name,'_token':$('input[name=_token]').val()}, function(data) {
                   console.log(data);
                   $('#Section').load(location.href + ' #Section');
               });

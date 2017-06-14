@@ -36,7 +36,6 @@
                         <a id="ourSection" class="list-group-item ourSection" href="/section/{{$section->id}}">
                             {{$section->name}}
                         </a>
-
                     @endforeach
                 </ul>
             </div>
@@ -56,8 +55,10 @@
                                   <input type="hidden" id="itemId" value="{{$post->id}}">
                               </li>
                               <li class="list-group-item">
+                                  @if (file_exists('storage/posts/' . $post->id . '.jpeg'))
+                                  <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
+                                  @endif
                                   <a href="profile/{{$post->user_id}}">
-                                    <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
                                     @if ($post->name == Auth::user()->name)
                                         You
                                     @else
@@ -177,7 +178,7 @@
 
         $('#delete').click(function(event) {
             var id = $("#id").val();
-            $.post('profile/post/delete', {'id': id,'_token':$('input[name=_token]').val()}, function(data) {
+            $.post('/profile/post/delete', {'id': id,'_token':$('input[name=_token]').val()}, function(data) {
                 $('#posts').load(location.href + ' #posts');
                 console.log(data);
             });
@@ -186,7 +187,7 @@
         $('#saveChanges').click(function(event) {
             var id = $("#id").val();
             var value = $.trim($("#addItem").val());
-            $.post('profile/post/update', {'id': id,'value': value,'_token':$('input[name=_token]').val()}, function(data) {
+            $.post('/profile/post/update', {'id': id,'value': value,'_token':$('input[name=_token]').val()}, function(data) {
                 $('#posts').load(location.href + ' #posts');
                 console.log(data);
             });
@@ -214,7 +215,7 @@
               alert('Please type anything fot your Section');
           }else
           {
-              $.post('section/create', {'name': name,'_token':$('input[name=_token]').val()}, function(data) {
+              $.post('/section/create', {'name': name,'_token':$('input[name=_token]').val()}, function(data) {
                   console.log(data);
                   $('#Section').load(location.href + ' #Section');
               });
@@ -223,7 +224,7 @@
 
         $('#AddFile').click(function(event) {
             var file = $('#file').val();
-            $.post('profile', {'text': text,'_token':$('input[name=_token]').val()}, function(data) {
+            $.post('/profile', {'text': text,'_token':$('input[name=_token]').val()}, function(data) {
                 console.log(data);
                 $('#posts').load(location.href + ' #posts');
             });

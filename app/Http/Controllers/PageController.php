@@ -43,11 +43,11 @@ class PageController extends Controller
         $id = Auth::user()->id;
         $posts = DB::table('posts')
                         ->where('user_id', '=', $id)
+                        ->where('section_id', '=', 0)
                         ->select('posts.*')
                         ->orderBy('created_at', 'desc')
                         ->get();
-        $filename = 'public/users/' . $id . '.jpeg';
-        $url = Storage::url($filename);
+        $url = 'storage/users/' . $id . '.jpeg';
         $iduser = $id;
         return view('profile', compact('posts', 'url', 'iduser'));
     }
@@ -55,6 +55,7 @@ class PageController extends Controller
     {
         $posts = DB::table('posts')
                         ->where('user_id', '=', $id)
+                        ->where('section_id', '=', 0)
                         ->select('posts.*')
                         ->orderBy('created_at', 'desc')
                         ->get();

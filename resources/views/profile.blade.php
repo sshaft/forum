@@ -17,7 +17,7 @@
           <div class="panel-body" id="Section">
               <ul class="list-group">
                   <!--List of options-->
-                  @if (isset($url))
+                  @if (isset($url) && file_exists($url))
                       <img class="img-responsive" src='{{$url}}' />
                   @else
                   <p>Upload Image</p>
@@ -56,11 +56,15 @@
                                 <input type="hidden" id="itemId" value="{{$post->id}}">
                             </li>
                             <li class="list-group-item">
+                                @if (file_exists('storage/posts/' . $post->id . '.jpeg'))
+                                <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
+                                @endif
                                 <span class="pull-right">
                                   {{$post->updated_at}}
                                 </span>
                                 <br>
                             </li>
+                            <br>
                         @endforeach
                     </ul>
                 </div>
@@ -128,7 +132,7 @@
                 alert('Please type anything fot your post');
             }else
             {
-                $.post('profile', {'text': text,'_token':$('input[name=_token]').val()}, function(data) {
+                $.post('/profile', {'text': text,'_token':$('input[name=_token]').val()}, function(data) {
                     console.log(data);
                     $('#posts').load(location.href + ' #posts');
                 });
@@ -137,7 +141,7 @@
 
         $('#delete').click(function(event) {
             var id = $("#id").val();
-            $.post('profile/post/delete', {'id': id,'_token':$('input[name=_token]').val()}, function(data) {
+            $.post('/profile/post/delete', {'id': id,'_token':$('input[name=_token]').val()}, function(data) {
                 $('#posts').load(location.href + ' #posts');
                 console.log(data);
             });
@@ -146,7 +150,7 @@
         $('#saveChanges').click(function(event) {
             var id = $("#id").val();
             var value = $.trim($("#addItem").val());
-            $.post('profile/post/update', {'id': id,'value': value,'_token':$('input[name=_token]').val()}, function(data) {
+            $.post('/profile/post/update', {'id': id,'value': value,'_token':$('input[name=_token]').val()}, function(data) {
                 $('#posts').load(location.href + ' #posts');
                 console.log(data);
             });

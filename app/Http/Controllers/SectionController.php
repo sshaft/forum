@@ -46,18 +46,7 @@ class SectionController extends Controller
 
     public function search(request $request)
     {
-        $term = $request->term;
-        $posts = Post::where('body','LIKE','%'.$term.'%')->get();
-        if (count($posts) == 0)
-        {
-            $searchResult[] = 'No Item Found';
-        }else{
-            foreach ($posts as $key => $value) {
-                $searchResult[] = $value->body;
-            }
-        }
-
-        return $searchResult;
+        
     }
 
     public function index($id)
