@@ -21,7 +21,6 @@
                 <h3 class="panel-title">Section
                   <a href="#" id="addNewsection" class="pull-right" data-toggle="modal" data-target="#SectionModal">
                     <i class="fa fa-plus" aria-hidden="true">
-                      Create
                     </i>
                   </a>
                 </h3>
@@ -45,7 +44,11 @@
         <div class="col-lg-offset-2 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">All Post<a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true">Add</i></a></h3>
+                    <h3 class="panel-title">All Post
+                      <a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                      </a>
+                    </h3>
                 </div>
                 <div class="panel-body" id="posts">
                     <ul class="list-group">
@@ -58,13 +61,17 @@
                                   @if (file_exists('storage/posts/' . $post->id . '.jpeg'))
                                   <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
                                   @endif
-                                  <a href="profile/{{$post->user_id}}">
+
                                     @if ($post->name == Auth::user()->name)
-                                        You
+                                        <a href="profile/{{$post->user_id}}">
+                                            You
+                                        </a>
                                     @else
-                                        {{$post->name}}
+                                        <a href="profile/{{$post->user_id}}">
+                                            {{$post->name}}
+                                        </a>
                                     @endif
-                                  </a>
+
                                   <span class="pull-right">
                                     {{$post->updated_at}}
                                   </span>
@@ -87,8 +94,7 @@
               <div class="modal-body">
                 <input type="hidden" id="id">
                 <p> <input type="text" placeholder="Write Item Here" id="addItem" class="form-control"></p>
-                <p> <label id="file2">Upload a File</label>
-                <input type="file" id="image" name="image"></p>
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-warning" id="delete" data-dismiss="modal" style="display: none">Delete</button>
@@ -169,7 +175,6 @@
                 alert('Please type anything fot your post');
             }else
             {
-                
                 $.post('profile', {'text': text,'section_id': section_id,'_token':$('input[name=_token]').val()}, function(data) {
                     console.log(data);
                     $('#posts').load(location.href + ' #posts');
@@ -222,20 +227,8 @@
               });
           }
         });
-
-        $('#AddFile').click(function(event) {
-            var file = $('#file').val();
-            $.post('/home/file', {'text': text,'_token':$('input[name=_token]').val()}, function(data) {
-                console.log(data);
-                $('#posts').load(location.href + ' #posts');
-            });
-        });
-
-        $( function() {
-            $( "#searchPost" ).autocomplete({
-              source: 'http://127.0.0.1:8000/profile/post/search'
-            });
-          } );
     });
+
+
 </script>
 @endsection

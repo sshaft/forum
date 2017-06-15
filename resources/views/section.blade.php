@@ -21,7 +21,6 @@
                 <h3 class="panel-title">Section
                   <a href="#" id="addNewsection" class="pull-right" data-toggle="modal" data-target="#SectionModal">
                     <i class="fa fa-plus" aria-hidden="true">
-                      Create
                     </i>
                   </a>
                 </h3>
@@ -50,7 +49,11 @@
         <div class="col-lg-offset-2 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Post<a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true">Add</i></a></h3>
+                    <h3 class="panel-title">Post
+                      <a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                      </a>
+                    </h3>
                 </div>
                 <div class="panel-body" id="posts">
                     <ul class="list-group">

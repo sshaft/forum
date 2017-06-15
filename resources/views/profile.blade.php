@@ -33,8 +33,7 @@
                   Email: {{Auth::user()->email}}
               </ul>
               <ul class="list-group">
-                  Points:
-              </ul>
+                  Something else?
           </div>
         </div>
       </div>
@@ -44,7 +43,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Post<a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal">
                       @if (Auth::user()->id == $iduser)
-                      <i class="fa fa-plus" aria-hidden="true">Add</i>
+                      <i class="fa fa-plus" aria-hidden="true"></i>
                       @endif
                     </a></h3>
                 </div>

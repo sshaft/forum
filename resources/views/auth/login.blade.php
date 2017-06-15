@@ -62,6 +62,10 @@
                                 </a>
                             </div>
                         </div>
+                        Login with:
+                        <a href="/login/facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
                     </form>
                 </div>
             </div>

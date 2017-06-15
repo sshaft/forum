@@ -96,7 +96,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-
+    <script src="{{ asset('js/fa-icon.js') }}"></script>
 
     @yield('script')
 

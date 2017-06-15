@@ -32,7 +32,7 @@ class UploadController extends Controller
 
     public function posts(request $request)
     {
-        $request->file('image');
+        /*$request->file('image');
         if ($request->hasFile('image')) {
             $request->file('image');
             $id = $request->post_id . ".jpeg";
@@ -40,7 +40,8 @@ class UploadController extends Controller
             return $request->all();
         }else{
             return 'No file Selected';
-        }
+        }*/
+        return $request;
     }
 
     public function show()
