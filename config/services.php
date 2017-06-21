@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => '1689158607779321',
         'client_secret' => '9a554bb5ae347c6790f2686dd959fc8e',
-        'redirect' => '/login/facebook/callback',
+        'redirect' => 'ceruti.herokuapp.com/login/facebook/callback',
     ],
 
 ];
