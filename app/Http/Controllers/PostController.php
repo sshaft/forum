@@ -36,7 +36,11 @@ class PostController extends Controller
 
     public function delete(request $request)
     {
-        Post::where('id', $request->id)->delete();
+        $post = Post::find($request->id)
+        if ($post->user_id == $userId)
+        {
+            Post::where('id', $request->id)->delete();
+        }
         return $request->all();
     }
 
@@ -44,9 +48,12 @@ class PostController extends Controller
     {
         $userId = Auth::id();
         $post = Post::find($request->id);
-        $post->body = $request->value;
-        $post->user_id = $userId;
-        $post->save();
+        if ($post->user_id == $userId)
+        {
+            $post->body = $request->value;
+            $post->user_id = $userId;
+            $post->save();
+        }
         return $request->all();
     }
 

@@ -12,7 +12,7 @@
       <div class="col-lg-offset-0 col-lg-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-              <h3 class="panel-title">{{Auth::user()->name}}</h3>
+              <h3 class="panel-title">{{$user_name}}</h3>
           </div>
           <div class="panel-body" id="Section">
               <ul class="list-group">
@@ -30,10 +30,10 @@
                   @endif
               </ul>
               <ul class="list-group">
-                  Email: {{Auth::user()->email}}
+                  Email: {{$user_email}}
               </ul>
               <ul class="list-group">
-                  Something else?
+
           </div>
         </div>
       </div>
@@ -41,16 +41,22 @@
         <div class="col-lg-offset-2 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Post<a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal">
+                    <h3 class="panel-title">Post
                       @if (Auth::user()->id == $iduser)
-                      <i class="fa fa-plus" aria-hidden="true"></i>
+                      <a href="#" id="addNew" class="pull-right" data-toggle="modal" data-target="#myModal">
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                      </a>
                       @endif
-                    </a></h3>
+                    </h3>
                 </div>
                 <div class="panel-body" id="posts">
                     <ul class="list-group">
                         @foreach ($posts as $post)
-                            <li class="list-group-item list-group-item-info Post" data-toggle="modal" data-target="#myModal">
+                            @if (Auth::user()->id == $iduser)
+                                <li class="list-group-item list-group-item-info Post" data-toggle="modal" data-target="#myModal">
+                            @else
+                                <li class="list-group-item list-group-item-info Post">
+                            @endif
                                 <a class="ourItem">{{$post->body}}</a>
                                 <input type="hidden" id="itemId" value="{{$post->id}}">
                             </li>

@@ -49,7 +49,9 @@ class PageController extends Controller
                         ->get();
         $url = 'storage/users/' . $id . '.jpeg';
         $iduser = $id;
-        return view('profile', compact('posts', 'url', 'iduser'));
+        $user_name = Auth::user()->name;
+        $user_email = Auth::user()->email;
+        return view('profile', compact('posts', 'url', 'iduser', 'user_name', 'user_email'));
     }
     public function users($id)
     {
@@ -59,9 +61,14 @@ class PageController extends Controller
                         ->select('posts.*')
                         ->orderBy('created_at', 'desc')
                         ->get();
+        $user = DB::table('users')->whereId($id)->get();
+        foreach ($user as $usr) {
+          $user_name = $usr->name;
+          $user_email= $usr->email;
+        }
         $filename = 'public/' . $id . '.jpeg';
         $url = Storage::url($filename);
         $iduser = $id;
-        return view('profile', compact('posts', 'url', 'iduser'));
+        return view('profile', compact('posts', 'url', 'iduser', 'user_name', 'user_email'));
     }
 }

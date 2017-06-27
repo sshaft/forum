@@ -52,11 +52,15 @@
                 </div>
                 <div class="panel-body" id="posts">
                     <ul class="list-group">
-                      @foreach ($posts as $post)
-                              <li class="list-group-item list-group-item-info Post" data-toggle="modal" data-target="#myModal">
-                                  <a class="ourItem">{{$post->body}}</a>
-                                  <input type="hidden" id="itemId" value="{{$post->id}}">
-                              </li>
+                        @foreach ($posts as $post)
+                        @if ($post->user_id == Auth::user()->id)
+                            <li class="list-group-item list-group-item-info Post" data-toggle="modal" data-target="#myModal">
+                        @else
+                            <li class="list-group-item list-group-item-info Post">
+                        @endif
+                            <a class="ourItem">{{$post->body}}</a>
+                                <input type="hidden" id="itemId" value="{{$post->id}}">
+                            </li>
                               <li class="list-group-item">
                                   @if (file_exists('storage/posts/' . $post->id . '.jpeg'))
                                   <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
