@@ -40,7 +40,7 @@
                     <a class="navbar-brand" href="{{ url('/home') }}">
                         Home
                     </a>
-                    @yield('navbar')
+                    @yield('navbar1')
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -56,12 +56,7 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <form class="navbar-form navbar-left" role="search">
-                              <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="Search">
-                                  <button type="submit" class="btn btn-default">Submit</button>
-                              </div>
-                            </form>
+                            @yield('navbar2')
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->email }}<span class="caret"></span>
@@ -69,7 +64,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="#">
+                                        <a href="/profile/settings">
                                             Settings
                                         </a>
                                     </li>

@@ -5,6 +5,15 @@
 <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
 @endsection
 
+@section('navbar2')
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+      <button type="submit" class="btn btn-default">Submit</button>
+  </div>
+</form>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">

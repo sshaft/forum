@@ -39,6 +39,7 @@ Route::post('profile', 'PostController@create');
 Route::post('profile/post/delete', 'PostController@delete');
 Route::post('profile/post/update', 'PostController@update');
 Route::get('profile/post/search', 'PostController@search');
+Route::get('profile/settings', 'UserController@index');
 
 Route::post('upload', 'PostController@upload');
 

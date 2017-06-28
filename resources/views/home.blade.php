@@ -1,14 +1,24 @@
 @extends('layouts.app')
 
+
+
 @section('css')
 <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
 @endsection
 
-@section('navbar')
+@section('navbar1')
 <a class="navbar-brand" href="{{ url('/profile') }}">
     Profile
 </a>
+@endsection
+@section('navbar2')
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+      <button type="submit" class="btn btn-default">Submit</button>
+  </div>
+</form>
 @endsection
 
 @section('content')
