@@ -64,7 +64,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="/profile/settings">
+                                        <a href="/settings">
                                             Settings
                                         </a>
                                     </li>

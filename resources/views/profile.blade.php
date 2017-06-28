@@ -26,7 +26,7 @@
           <div class="panel-body" id="Section">
               <ul class="list-group">
                   <!--List of options-->
-                  @if (isset($url) && file_exists($url))
+                  @if (file_exists($url))
                       <img class="img-responsive" src='{{$url}}' />
                   @else
                   <p>Upload Image</p>
