@@ -15,73 +15,76 @@
 <div class="container">
     <div class="row">
       <!--Section Left Image and Details-->
-      <div class="col-lg-offset-0 col-lg-4">
+      <div class="col-lg-offset-3 col-lg-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-              <h3 class="panel-title">{{$user->name}}</h3>
+              <h3 class="panel-title">Your Profile</h3>
           </div>
-          <div class="panel-body" id="Section">
+          <div class="panel-body" id="Profile">
               <ul class="list-group">
                   <!--List of options-->
                   @if (file_exists($url))
                       <img class="img-responsive" src='{{$url}}' />
-                  @else
-                  <p>Upload Image</p>
+                  @endif
+                  <p>Change Image</p>
                   <form enctype="multipart/form-data" action="/profile/upload" method="post">
                       {{csrf_field()}}
                       <input type="file" name="image">
                       <br>
                       <input type="submit" value="Upload">
                   </form>
-                  @endif
               </ul>
               <ul class="list-group">
-                  Email: {{$user->email}}
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Name</span>
+                    <input type="text" class="form-control" id="name" placeholder="{{$user->name}}" aria-describedby="basic-addon1">
+                </div>
               </ul>
               <ul class="list-group">
-
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Email</span>
+                    <input type="text" class="form-control" id="email" placeholder="{{$user->email}}" aria-describedby="basic-addon1">
+                </div>
+              </ul>
+              <ul class="list-group">
+                  <a type="button" class="btn" href="/settings/password">
+                    Change Password
+                  </a>
+              </ul>
+              <ul class="list-group">
+                  <button type="button" class="btn btn-warning" id="noChanges">No changes</button>
+                  <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+              </ul>
           </div>
         </div>
       </div>
-      <!--Center Body-->
-        <div class="col-lg-offset-2 col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Post
-
-                    </h3>
-                </div>
-                <div class="panel-body" id="posts">
-                    <ul class="list-group">
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="title">Add new post</h4>
-            </div>
-            <div class="modal-body">
-              <input type="hidden" id="id">
-              <p> <input type="text" placeholder="Write Item Here" id="addItem" class="form-control"></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-warning" id="delete" data-dismiss="modal" style="display: none">Delete</button>
-              <button type="button" class="btn btn-primary" id="saveChanges" style="display: none" data-dismiss="modal">Save changes</button>
-              <button type="button" class="btn btn-primary" id="AddButton" data-dismiss="modal">Add Item</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
 
     </div>
 </div>
 
 @endsection
 @section('script')
+<script>
+$(document).ready(function() {
+  $('#saveChanges').click(function(event) {
+      var text = $('#name').val();
+      var email = $('#email').val();
+      if (text == "" || email == "")
+      {
+          alert('Please type your Name');
+      }else
+      {
+          $.post('/settings/name', {'name': text,'email': email,'_token':$('input[name=_token]').val()}, function(data) {
+              console.log(data);
+              $('#Profile').load(location.href + ' #Profile');
+          });
+      }
+  });
+
+  $('#noChanges').click(function(event) {
+      $('#Profile').load(location.href + ' #Profile');
+  });
+
+});
+</script>
 @endsection
