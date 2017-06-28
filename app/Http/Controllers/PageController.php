@@ -30,8 +30,10 @@ class PageController extends Controller
                         ->select('posts.*', 'users.name')
                         ->orderBy('created_at', 'desc')
                         ->get();
+      $id = Auth::user()->id;
       $sections = DB::table('sections')
-                        ->where('ID_owner', '=', Auth::user()->id)
+                        ->join('section_roles', 'section_roles.section_id', '=', 'sections.id')
+                        ->where('section_roles.user_id', '=', $id)
                         ->select('sections.*')
                         ->orderBy('created_at', 'desc')
                         ->get();

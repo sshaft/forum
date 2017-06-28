@@ -25,6 +25,11 @@ class SectionController extends Controller
         $section->name = $request->name;
         $section->ID_owner = $userId;
         $section->save();
+        $role = new Section_role;
+        $role->section_id = $section->id;
+        $role->user_id = $userId;
+        $role->role_level = 0;
+        $role->save();
         return 'Done';
     }
 
@@ -46,23 +51,33 @@ class SectionController extends Controller
 
     public function search(request $request)
     {
-        
+
     }
 
     public function index($id)
     {
-      $posts = DB::table('posts')
-                        ->join('users', 'posts.user_id', '=', 'users.id')
-                        ->where('posts.section_id', '=', $id)
-                        ->select('posts.*', 'users.name')
-                        ->orderBy('created_at', 'desc')
+      $a = false;
+      $idu = Auth::user()->id;
+      $role = DB::table('section_roles')
+                        ->where('section_id', '=', $id)
+                        ->where('user_id', '=', $idu)
                         ->get();
-      $sections = DB::table('sections')
-                        ->where('ID_owner', '=', Auth::user()->id)
-                        ->select('sections.*')
-                        ->orderBy('created_at', 'desc')
-                        ->get();
-      return view('section', compact('posts', 'sections', 'id'));
+      foreach ($role as $rol) {
+        $posts = DB::table('posts')
+                          ->join('users', 'posts.user_id', '=', 'users.id')
+                          ->where('posts.section_id', '=', $id)
+                          ->select('posts.*', 'users.name')
+                          ->orderBy('created_at', 'desc')
+                          ->get();
+        $sections = DB::table('sections')
+                          ->join('section_roles', 'section_roles.section_id', '=', 'sections.id')
+                          ->where('section_roles.user_id', '=', $idu)
+                          ->select('sections.*')
+                          ->orderBy('created_at', 'desc')
+                          ->get();
+        return view('section', compact('posts', 'sections', 'id'));
+      }
+    return redirect('home');
     }
 
 }
