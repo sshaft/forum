@@ -77,7 +77,7 @@
                                       @if ($post->user_id == Auth::user()->id)
                                           <div class="imagepost">
                                             <input type="hidden" class="ourItem2" id="imageid" value="{{$post->id}}">
-                                            <span id="deleteImage" value="{{$post->id}}" class="label label-default imagedelete">Delete</span>
+                                            <span id="deleteImage" value="{{$post->id}}" class="label label-default imagedelete">Delete image</span>
                                           </div>
                                       @endif
                                   @else
