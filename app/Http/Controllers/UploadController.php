@@ -25,7 +25,7 @@ class UploadController extends Controller
             $userId = Auth::id();
             $id = $userId . ".jpeg";
             $request->image->storeAs('public/users', $id);
-            return $request->all();
+            return back();
             //return Storage::putFile('public', $request->file('image'));
         }else{
             return 'No file Selected';
@@ -34,7 +34,23 @@ class UploadController extends Controller
 
     public function add(request $request)
     {
-        //
+        $userId = Auth::id();
+        $request->file('image');
+        $p = Post::find($request->imageid);
+        if ($p->user_id == $userId)
+        {
+            if ($request->hasFile('image')) {
+                $request->file('image');
+                //return $request->image->path();
+                //return $request->image->extension();
+                $id = $p->id . ".jpeg";
+                $request->image->storeAs('public/posts', $id);
+                return back();
+                //return Storage::putFile('public', $request->file('image'));
+            }else{
+                return 'No file Selected';
+            }
+        }
     }
 
     public function delete(request $request)
@@ -49,7 +65,6 @@ class UploadController extends Controller
         }else{
             return 'error';
         }
-        //return $request->id_image;
     }
 
     public function posts(request $request)

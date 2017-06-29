@@ -81,9 +81,10 @@
                                 @else
                                     @if ($post->user_id == Auth::user()->id)
                                         <p>Upload Image</p>
-                                        <form enctype="multipart/form-data" action="/profile/upload" method="post">
+                                        <form enctype="multipart/form-data" action="/post/image/add" method="post">
                                             {{csrf_field()}}
                                             <input type="file" name="image">
+                                            <input type="hidden" name="imageid" value="{{$post->id}}">
                                             <input type="submit" value="Upload">
                                         </form>
                                     @endif

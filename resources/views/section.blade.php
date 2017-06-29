@@ -5,10 +5,18 @@
 <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
 @endsection
 
-@section('navbar')
+@section('navbar1')
 <a class="navbar-brand" href="{{ url('/profile') }}">
     Profile
 </a>
+@endsection
+@section('navbar2')
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+      <button type="submit" class="btn btn-default">Submit</button>
+  </div>
+</form>
 @endsection
 
 @section('content')
@@ -87,9 +95,10 @@
                                 @else
                                     @if ($post->user_id == Auth::user()->id)
                                         <p>Upload Image</p>
-                                        <form enctype="multipart/form-data" action="/profile/upload" method="post">
+                                        <form enctype="multipart/form-data" action="/post/image/add" method="post">
                                             {{csrf_field()}}
                                             <input type="file" name="image">
+                                            <input type="hidden" name="imageid" value="{{$post->id}}">
                                             <input type="submit" value="Upload">
                                         </form>
                                     @endif
