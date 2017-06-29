@@ -26,24 +26,25 @@
                   @if (file_exists($url))
                       <img class="img-responsive" src='{{$url}}' />
                   @endif
-                  <p>Change Image</p>
                   <form enctype="multipart/form-data" action="/profile/upload" method="post">
                       {{csrf_field()}}
-                      <input type="file" name="image">
-                      <br>
+                      <div class="form-group">
+                          <label>Change Image</label>
+                          <input type="file" class="form-control-file" name="image">
+                      </div>
                       <input type="submit" value="Upload">
                   </form>
               </ul>
               <ul class="list-group">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Name</span>
-                    <input type="text" class="form-control" id="name" placeholder="{{$user->name}}" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="name" placeholder="{{$user->name}}" value="{{$user->name}}" aria-describedby="basic-addon1">
                 </div>
               </ul>
               <ul class="list-group">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Email</span>
-                    <input type="text" class="form-control" id="email" placeholder="{{$user->email}}" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="email" placeholder="{{$user->email}}" value="{{$user->email}}" aria-describedby="basic-addon1">
                 </div>
               </ul>
               <ul class="list-group">
