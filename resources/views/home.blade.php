@@ -90,17 +90,15 @@
                                           </form>
                                       @endif
                                   @endif
-                                  @if ($post->name == Auth::user()->name)
-                                      <a href="profile/{{$post->user_id}}">
-                                          You
-                                      </a>
-                                  @else
-                                      <a href="profile/{{$post->user_id}}">
-                                          {{$post->name}}
-                                      </a>
-                                  @endif
+                                  <a href="/profile/{{$post->user_id}}">
+                                    @if ($post->name == Auth::user()->name)
+                                        You
+                                    @else
+                                        {{$post->name}}
+                                    @endif
+                                  </a>
                                   <span class="pull-right">
-                                    {{$post->updated_at}}
+                                      {{$post->updated_at}}
                                   </span>
                               </li>
                               <br>

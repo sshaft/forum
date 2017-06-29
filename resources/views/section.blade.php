@@ -76,19 +76,34 @@
                                   <input type="hidden" id="itemId" value="{{$post->id}}">
                               </li>
                               <li class="list-group-item">
-                                  @if (file_exists('storage/posts/' . $post->id . '.jpeg'))
-                                  <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
-                                  @endif
-                                  <a href="profile/{{$post->user_id}}">
-                                    @if ($post->name == Auth::user()->name)
-                                        You
-                                    @else
-                                        {{$post->name}}
+                                @if (file_exists('storage/posts/' . $post->id . '.jpeg'))
+                                    <img class="img-responsive" src='/storage/posts/{{$post->id}}.jpeg' />
+                                    @if ($post->user_id == Auth::user()->id)
+                                        <div class="imagepost">
+                                          <input type="hidden" class="ourItem2" id="imageid" value="{{$post->id}}">
+                                          <span id="deleteImage" value="{{$post->id}}" class="label label-default imagedelete">Delete image</span>
+                                        </div>
                                     @endif
-                                  </a>
-                                  <span class="pull-right">
+                                @else
+                                    @if ($post->user_id == Auth::user()->id)
+                                        <p>Upload Image</p>
+                                        <form enctype="multipart/form-data" action="/profile/upload" method="post">
+                                            {{csrf_field()}}
+                                            <input type="file" name="image">
+                                            <input type="submit" value="Upload">
+                                        </form>
+                                    @endif
+                                @endif
+                                <a href="/profile/{{$post->user_id}}">
+                                  @if ($post->name == Auth::user()->name)
+                                      You
+                                  @else
+                                      {{$post->name}}
+                                  @endif
+                                </a>
+                                <span class="pull-right">
                                     {{$post->updated_at}}
-                                  </span>
+                                </span>
                               </li>
                               <br>
                       @endforeach
@@ -268,6 +283,14 @@
                       $('#Section').load(location.href + ' #Section');
                   });
               }
+          });
+
+          $(document).on('click', '.imagepost', function(event) {
+              var id_image = $(this).find('#imageid').val();
+                  $.post('/post/image/delete', {'id_image': id_image,'_token':$('input[name=_token]').val()}, function(data) {
+                      console.log(data);
+                      $('#posts').load(location.href + ' #posts');
+                  });
           });
     });
 </script>
