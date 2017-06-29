@@ -146,7 +146,7 @@
                 alert('Please type anything fot your post');
             }else
             {
-                $.post('/profile', {'text': text,'_token':$('input[name=_token]').val()}, function(data) {
+                $.post('profile', {'text': text,'section_id': 0,'_token':$('input[name=_token]').val()}, function(data) {
                     console.log(data);
                     $('#posts').load(location.href + ' #posts');
                 });

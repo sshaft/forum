@@ -36,8 +36,9 @@ class PostController extends Controller
 
     public function delete(request $request)
     {
-        $post = Post::find($request->id)
-        if ($post->user_id == $userId)
+        $userId = Auth::id();
+        $p = Post::find($request->id);
+        if ($p->user_id == $userId)
         {
             Post::where('id', $request->id)->delete();
         }
@@ -59,7 +60,7 @@ class PostController extends Controller
 
     public function search(request $request)
     {
-        $term = $request->term;
+        /*$term = $request->term;
         $posts = Post::where('body','LIKE','%'.$term.'%')->get();
         if (count($posts) == 0)
         {
@@ -70,7 +71,7 @@ class PostController extends Controller
             }
         }
 
-        return $searchResult;
+        return $searchResult;*/
     }
 
     public function upload(request $request)

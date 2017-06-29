@@ -188,7 +188,7 @@
                 alert('Please type anything fot your post');
             }else
             {
-                $.post('profile', {'text': text,'section_id': section_id,'_token':$('input[name=_token]').val()}, function(data) {
+                $.post('profile/post', {'text': text,'section_id': section_id,'_token':$('input[name=_token]').val()}, function(data) {
                     console.log(data);
                     $('#posts').load(location.href + ' #posts');
                 });
@@ -241,7 +241,5 @@
           }
         });
     });
-
-
 </script>
 @endsection

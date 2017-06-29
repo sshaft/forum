@@ -35,7 +35,9 @@ Route::get('admin-password/reset/{token}', 'Admin\ForgotPasswordController@showR
 //User Type
 Route::get('profile', 'PageController@profile');
 
-Route::post('profile', 'PostController@create');
+//post
+Route::post('profile/post', 'PostController@create');
+
 Route::post('profile/post/delete', 'PostController@delete');
 Route::post('profile/post/update', 'PostController@update');
 Route::get('profile/post/search', 'PostController@search');
@@ -50,12 +52,13 @@ Route::post('upload', 'PostController@upload');
 
 //Section
 Route::post('section/create', 'SectionController@create');
-Route::get('section/{id}' , 'SectionController@index');
+Route::get('section/{id}', 'SectionController@index');
+Route::post('section/add', 'SectionController@add');
 
 Route::post('profile/upload', 'UploadController@profile');
 Route::post('home/file', 'UploadController@posts');
 
-Route::get('profile/{email}', 'PageController@users');
+Route::get('profile/{id}', 'PageController@users');
 
 //socialite facebook
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');

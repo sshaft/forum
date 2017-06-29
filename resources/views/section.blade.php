@@ -42,6 +42,19 @@
                         </a>
                     @endforeach
                 </ul>
+                @if ($r->role_level==0)
+                <span class="label label-default">Add User to the Section by Email</span>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="input-group">
+                            <input type="text" id="email2" name="email2" class="form-control" placeholder="Email">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="AddUser" type="button">Add</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                @endif
             </div>
           </div>
         </div>
@@ -243,6 +256,21 @@
               source: 'http://127.0.0.1:8000/profile/post/search'
             });
           } );
+
+          $('#AddUser').click(function(event) {
+              var email = $('#email2').val();
+              var id = {{$id}}
+              if (email == "")
+              {
+                  alert('Please type a correct Email');
+              }else
+              {
+                  $.post('/section/add', {'email': email,'id': id,'_token':$('input[name=_token]').val()}, function(data) {
+                      console.log(data);
+                      $('#Section').load(location.href + ' #Section');
+                  });
+              }
+          });
     });
 </script>
 @endsection

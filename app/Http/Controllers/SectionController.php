@@ -63,6 +63,7 @@ class SectionController extends Controller
                         ->where('user_id', '=', $idu)
                         ->get();
       foreach ($role as $rol) {
+        $r=$rol;
         $posts = DB::table('posts')
                           ->join('users', 'posts.user_id', '=', 'users.id')
                           ->where('posts.section_id', '=', $id)
@@ -75,9 +76,39 @@ class SectionController extends Controller
                           ->select('sections.*')
                           ->orderBy('created_at', 'desc')
                           ->get();
-        return view('section', compact('posts', 'sections', 'id'));
+        return view('section', compact('posts', 'sections', 'id', 'r'));
       }
     return redirect('home');
+    }
+
+    public function add(request $request)
+    {
+        $idu = Auth::user()->id;
+        $role = DB::table('section_roles')
+                          ->where('section_id', '=', $request->id)
+                          ->where('user_id', '=', $idu)
+                          ->get();
+        $user2 = DB::table('users')
+                          ->where('email', '=', $request->email)
+                          ->first();
+        if(isset($user2->id))
+        {
+            foreach ($role as $rol) {
+                if ($rol->role_level == 0)
+                {
+                  $r = new Section_role;
+                  $r->section_id = $request->id;
+                  $r->user_id = $user2->id;
+                  $r->role_level = 1;
+                  $r->save();
+                  return 'Done';
+                }
+            }
+        }else{
+            return $request->email;
+        }
+
+
     }
 
 }
