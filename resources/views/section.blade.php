@@ -108,8 +108,6 @@
               <div class="modal-body">
                 <input type="hidden" id="id">
                 <p> <input type="text" placeholder="Write Item Here" id="addItem" class="form-control"></p>
-                <p> <label id="file2">Upload a File</label>
-                <input type="file" id="image" name="image"></p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-warning" id="delete" data-dismiss="modal" style="display: none">Delete</button>

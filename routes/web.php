@@ -50,6 +50,11 @@ Route::post('settings/password', 'UserController@changepassword');
 
 Route::post('upload', 'PostController@upload');
 
+//delete image File from post
+Route::post('post/image/delete', 'UploadController@delete');
+//add image to a post
+Route::post('post/image/add', 'UploadController@add');
+
 //Section
 Route::post('section/create', 'SectionController@create');
 Route::get('section/{id}', 'SectionController@index');
